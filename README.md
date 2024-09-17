@@ -13,7 +13,7 @@ Repository for my presentations.
 
 ```sh
 npm i
-npm run dev
+npm start
 ```
 
 ### Helpers
