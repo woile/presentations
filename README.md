@@ -15,3 +15,19 @@ Repository for my presentations.
 npm i
 npm run dev
 ```
+
+### Helpers
+
+```html
+<!-- .element: class="fragment" data-fragment-index="2" -->
+```
+
+```md
+Note: this is a note
+```
+
+Speaker notes: <kbd>S</kbd>
+
+### Exporting as PDF
+
+In chrome, open your presentation, remove the `#` and add `?print-pdf`
