@@ -18,16 +18,16 @@ html * {
  *********************************************/
 :root {
   --r-background-color: #fffbf0;
-  --r-main-font: "Alfa Slab One", sans-serif;
+  --r-main-font: sans-serif;
   --r-main-font-size: 40px;
   --r-main-color: #657b83;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: League Gothic, Impact, sans-serif;
+  --r-heading-font: "Alfa Slab One", Impact, sans-serif;
   --r-heading-color: #CE412B;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
-  --r-heading-text-transform: uppercase;
+  --r-heading-text-transform: capitalize;
   --r-heading-text-shadow: none;
   --r-heading-font-weight: normal;
   --r-heading1-text-shadow: none;
@@ -35,8 +35,9 @@ html * {
   --r-heading2-size: 2.11em;
   --r-heading3-size: 1.55em;
   --r-heading4-size: 1em;
+  --r-heading4-color: #2e2459;
   --r-code-font: monospace;
-  --r-link-color: #CE412B;
+  --r-link-color: #268bd2;
   --r-link-color-dark: #1a6091;
   --r-link-color-hover: #78b9e6;
   --r-selection-background-color: #d33682;
@@ -109,6 +110,7 @@ html * {
 
 .reveal h4 {
   font-size: var(--r-heading4-size);
+  color: var(--r-heading4-color);
 }
 
 .reveal h1 {
@@ -272,6 +274,11 @@ html * {
   text-align: right;
 }
 
+
+.reveal table tbody td:not(:first-child) {
+  border-left: 1px dotted;
+}
+
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
   border-bottom: none;
@@ -288,8 +295,9 @@ html * {
 }
 
 .reveal small {
+
   display: inline-block;
-  font-size: 0.6em;
+  font-size: 0.4em;
   line-height: 1.2em;
   vertical-align: top;
 }
@@ -361,4 +369,14 @@ html * {
   .backgrounds {
     background-color: var(--r-background-color);
   }
+}
+
+.reveal i.fab {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+}
+
+.reveal i.far {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
 }

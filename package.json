@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "reveal-md slides/ --watch",
+        "start": "reveal-md slides/ --watch --disable-auto-open",
         "build": "reveal-md slides/ --static output --assets-dir assets"
     },
     "dependencies": {

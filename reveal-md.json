@@ -1,0 +1,3 @@
+{
+  "scripts": ["scripts/lucide.min.js", "scripts/plugins.js"]
+}
