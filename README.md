@@ -28,6 +28,8 @@ Note: this is a note
 
 Speaker notes: <kbd>S</kbd>
 
+Fullscreen mode: <kbd>F</kbd>
+
 ### Exporting as PDF
 
 In chrome, open your presentation, remove the `#` and add `?print-pdf`
