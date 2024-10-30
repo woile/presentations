@@ -8,13 +8,14 @@ duration: 40 min
 
 ---
 
+
+### Santiago
+
 ![kpn logo](./assets/kpn-logo.svg) <!-- .element: class="fragment" data-fragment-index="0" width="200px" style="margin: 0" -->
 
-### Santi
+locations 🇦🇷 🇳🇱  <!-- .element: class="fragment" data-fragment-index="1" -->
 
-🇦🇷 🇳🇱  <!-- .element: class="fragment" data-fragment-index="1" -->
-
-🐍 🦀  <!-- .element: class="fragment" data-fragment-index="1" -->
+experience 🐍 🦀  <!-- .element: class="fragment" data-fragment-index="1" -->
 ![typescript logo](./assets/ts.png) <!-- .element: class="fragment" data-fragment-index="1" height="35px" width="35px" style="margin: 0"-->
 
 ---
@@ -167,7 +168,8 @@ Many sections
 
 ### First: What is a grammar?
 
-> a finite set of rules to generate strings that are in the grammar <!-- .element: class="fragment" data-fragment-index="0" -->
+> a finite set of rules to generate strings that are in the grammar
+<!-- .element: class="fragment" data-fragment-index="0" -->
 
 ```sql
 SELECT ( ALL | DISTINCT )?
@@ -177,8 +179,8 @@ SELECT ( ALL | DISTINCT )?
 ```
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-- SELECT is a `terminal`
-- `<select sublist>` is a `non-terminal`
+- SELECT is a terminal <!-- .element: class="fragment" data-fragment-index="1" -->
+- \<select sublist\> is a non-terminal <!-- .element: class="fragment" data-fragment-index="1" -->
 
 Notes:
 - it's actually a context-free grammar
@@ -191,7 +193,8 @@ Notes:
 
 ### Then: What is a parser?
 
-> A parser maps a series of tokens to grammar rules to create a syntax tree, identifying errors if the token sequence is invalid
+> A tool that maps a series of tokens to grammar rules to create a syntax tree, identifying errors if the token sequence is invalid
+<!-- .element: class="fragment" data-fragment-index="0" -->
 
 ---
 
@@ -334,5 +337,14 @@ notes:
 
 ## Demo
 
-----
+---
 
+## Thanks
+
+![qr code](./assets/qr-code.png)
+
+![mastodon logo](./assets/mastodon.png) <!-- .element:  width="40px" style="margin: 0" --> [@woile](https://hachyderm.io/@woile)
+&nbsp;&nbsp;&nbsp;
+![github logo](./assets/github.png) <!-- .element:  width="50px" style="margin: 0" --> [woile](https://github.com/woile)
+
+santiwilly@gmail.com
