@@ -112,6 +112,9 @@ Throw them in the fire of the grill
 Wait for t{1 hour}
 ```
 
+![github logo](./assets/github.png) <!-- .element:  width="40px" style="margin: 0" -->
+[reciperium/recipe-lang](https://github.com/reciperium/recipe-lang)
+
 ---
 
 ### Why Rust as a solo dev?
@@ -195,6 +198,23 @@ Notes:
 
 > A tool that maps a series of tokens to grammar rules to create a syntax tree, identifying errors if the token sequence is invalid
 <!-- .element: class="fragment" data-fragment-index="0" -->
+
+----
+
+<!-- .slide: class="grid grid-cols-2 items-center content-center" -->
+
+```json
+{
+  "name": "jon doe",
+  "age": 18,
+  "address": {
+    "street": "Evrgrn Terace",
+    "number": 742
+  }
+}
+```
+
+![syntax tree image](./assets/graph.png) <!-- .element: class="fragment" data-fragment-index="0" width="300px" -->
 
 ---
 
@@ -289,6 +309,11 @@ Notes:
 
 ## Winnow
 
+- Excellent documentation with tutorials
+- Very extendable
+- Performant
+- A fork of `nom` by [epage](https://github.com/epage)
+
 ----
 
 ## Setup
@@ -336,6 +361,15 @@ notes:
 ---
 
 ## Demo
+
+---
+
+### JSONOO
+
+(JSON Object Only)
+
+_/Jay • SO • NOOOO/_ <!-- .element: class="fragment" data-fragment-index="0" -->
+
 
 ---
 
