@@ -3,6 +3,7 @@ title: Cooking parsers with Winnow
 theme: themes/rusty.css
 duration: 40 min
 ---
+<base target="_blank">
 
 # Cooking parsers with Winnow
 
@@ -216,6 +217,18 @@ Notes:
 
 ![syntax tree image](./assets/graph.png) <!-- .element: class="fragment" data-fragment-index="0" width="300px" -->
 
+----
+<!-- .slide: data-auto-animate -->
+### Disclaimer
+
+![programming language parts](./assets/pl-parts-1.svg)
+
+----
+<!-- .slide: data-auto-animate -->
+### Disclaimer
+
+![programming language parts 2](./assets/pl-parts-2.svg)
+
 ---
 
 ## Choosing a parser
@@ -226,7 +239,9 @@ Notes:
 
 Notes:
 - is there a correct one? No
+- combinators: a mix of parser functions combined into a parser
 - combinators are more intuitive to me, easier to test
+- grammars: context-free grammar
 
 ---
 
@@ -296,14 +311,17 @@ ident_list = _{ !digit ~ ident ~ (" " ~ ident)+ }
 
 Notes:
 - This is almost never the case
+- antlr works in many languages (not rust)
 
 ---
 
 ## What's in the rust market?
 
-- [pest](https://github.com/pest-parser/pest)
-- [winnon](https://github.com/winnow-rs/winnow) & nom
-- [chumsky](https://github.com/zesterer/chumsky)
+- grammars: [pest](https://github.com/pest-parser/pest), [peg](https://github.com/kevinmehall/rust-peg)
+- combinators: [winnow](https://github.com/winnow-rs/winnow), [nom](https://github.com/rust-bakery/nom), [chumsky](https://github.com/zesterer/chumsky)
+- regex: [regex](https://github.com/rust-lang/regex)
+
+[and more](https://github.com/rosetta-rs/parse-rosetta-rs "target='_blank'")
 
 ---
 
@@ -326,7 +344,7 @@ cargo add winnow
 
 ### Main usage
 
-```rs [1-14|2|4-9|8|12]
+```rs [1-14|2|4,8|8,12]
 use winnow::combinator::alt;
 use winnow::{PResult, Parser};
 
