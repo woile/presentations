@@ -522,6 +522,36 @@ assert_eq!(parser.parse_peek("(abc)"), Ok(("", "abc")));
 
 ---
 
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated](./assets/sep.svg)
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated 2](./assets/sep2.svg)
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated 3](./assets/sep3.svg)
+
+---
+
 ## Wrap up
 
 - [winnow][winnow] is a well-documented powerful library
