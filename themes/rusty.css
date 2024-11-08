@@ -18,7 +18,7 @@ html * {
  *********************************************/
  /* Colors are WCAG AA for Large text */
 :root {
-  --r-background-color: #fff8e6;
+  --r-background-color: #fffbf0;
   --r-main-font: sans-serif;
   --r-main-font-size: 40px;
   --r-main-color: #657b83;
