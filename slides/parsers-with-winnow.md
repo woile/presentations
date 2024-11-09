@@ -13,12 +13,14 @@ duration: 40 min
 
 ### Santiago
 
-![kpn logo](./assets/kpn-logo.svg) <!-- .element: class="fragment" data-fragment-index="0" width="200px" style="margin: 0" -->
 
-locations 🇦🇷 🇳🇱  <!-- .element: class="fragment" data-fragment-index="1" -->
+locations 🇦🇷 🇳🇱  <!-- .element: class="fragment" data-fragment-index="0" -->
 
-experience 🐍 🦀  <!-- .element: class="fragment" data-fragment-index="1" -->
-![typescript logo](./assets/ts.png) <!-- .element: class="fragment" data-fragment-index="1" height="35px" width="35px" style="margin: 0"-->
+experience 🐍 🦀  <!-- .element: class="fragment" data-fragment-index="0" -->
+![typescript logo](./assets/ts.png) <!-- .element: class="fragment" data-fragment-index="0" height="35px" width="35px" style="margin: 0"-->
+
+![kpn logo](./assets/kpn-logo.svg) <!-- .element: class="fragment" data-fragment-index="1" width="200px" style="margin-right: 50px" -->
+![rustlab logo](./assets/rustlab-logo.png) <!-- .element: class="fragment" data-fragment-index="1" width="200px" style="margin-left: 50px" -->
 
 ---
 
@@ -514,11 +516,13 @@ assert_eq!(parser.parse_peek("(abc)"), Ok(("", "abc")));
 
 ### Context
 
-- `StrContext::Label`
-- `StrContext::Expected`
-- `StrContextValue::CharLiteral`
-- `StrContextValue::StringLiteral`
-- `StrContextValue::Description`
+```rs
+StrContext::Label  // what is currently being parsed
+StrContext::Expected  // expected grammar item
+StrContextValue::CharLiteral
+StrContextValue::StringLiteral
+StrContextValue::Description
+```
 
 ---
 
