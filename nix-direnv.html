@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Nix & direnv</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./assets/themes/rusty.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/vs.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+            
+
+# Nix & direnv
+
+---
+
+## Installation
+
+- Install `nix` (on mac use [determinate installer](https://github.com/DeterminateSystems/nix-installer))
+- Install `direnv` and [hook into your shell](https://direnv.net/docs/hook.html)
+
+```sh
+nix profile install direnv
+```
+
+- Add nix cache to avoid building everything <!-- .element: class="fragment" data-fragment-index="0" -->
+
+---
+
+## What is Nix?
+
+- package manager
+- language
+- operating system
+
+----
+
+## What can you do with Nix?
+
+```sh [1-8|1,5]
+install packages
+build applications
+build docker containers
+create virtual machines
+create development environments
+build ISO
+control fleet of servers
+templates
+```
+
+---
+
+## As a package manager
+
+Replace `apt`, `brew`, `pipx`, etc.
+
+----
+
+### Install package
+
+```sh
+nix profile install $PACKAGE
+```
+
+### Remove package
+
+```sh
+nix profile remove $PACKAGE
+```
+
+### Upgrade packages
+
+```sh
+nix profile upgrade
+```
+
+----
+
+### Repository
+
+[search.nixos.org/packages](https://search.nixos.org/packages)
+
+---
+
+## What is direnv?
+
+> load and unload stuff depending on the current directory
+
+---
+
+## As a development environment
+
+----
+
+```sh
+echo "use flake . --impure" > .envrc
+touch flake.nix
+git add -N flake.nix .envrc # promise we will add them
+```
+
+----
+
+```nix
+{
+  description = "A development shell";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = inputs@{ flake-parts, ... }:
+  # https://flake.parts/
+  flake-parts.lib.mkFlake { inherit inputs; } {
+    systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
+    perSystem = { pkgs, ... }: {
+      devShells.default = pkgs.mkShell {
+        name = "dev";
+        # https://search.nixos.org/packages
+        buildInputs = [ pkgs.just ];
+        shellHook = ''echo "Welcome to the devshell!"'';
+      };
+    };
+  };
+}
+```
+
+----
+
+```sh
+direnv allow
+```
+
+---
+
+## Upsides
+
+- reproducible environment everywhere
+- no need to install anything globally
+- easy cache on github actions
+
+---
+
+<!-- .slide: data-auto-animate -->
+
+## Downsides
+
+- slow if binaries are missing or wrongly configured
+- hard to debug
+
+---
+
+<!-- .slide: data-auto-animate -->
+
+## Downsides
+
+- slow if binaries are missing or wrongly configured
+- very hard to debug
+
+---
+
+<!-- .slide: data-auto-animate -->
+
+## Downsides
+
+- slow if binaries are missing or wrongly configured
+- very very hard to debug
+
+---
+
+## Thank you!
+
+![qr code](./assets/qr-code.png)
+
+![mastodon logo](./assets/mastodon.png) <!-- .element:  width="40px" style="margin: 0" --> [@woile](https://hachyderm.io/@woile)
+&nbsp;&nbsp;&nbsp;
+![github logo](./assets/github.png) <!-- .element:  width="50px" style="margin: 0" --> [woile](https://github.com/woile)
+
+santiwilly@gmail.com
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./mermaid/dist/mermaid.min.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        highlight: {
+          highlightOnLoad: false
+        },
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"_":["slides/"],"static":"output","assets-dir":"assets","assetsDir":"assets"}, queryOptions);
+    </script>
+
+    <script src="./assets/scripts/lucide.min.js"></script>
+    <script src="./assets/scripts/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+      Reveal.addEventListener('ready', function (event) {
+        const blocks = Reveal.getRevealElement().querySelectorAll('pre code:not(.mermaid)');
+        const hlp = Reveal.getPlugin('highlight');
+        blocks.forEach(hlp.highlightBlock);
+      });
+    </script>
+
+    <script>
+      const mermaidOptions = extend({ startOnLoad: false }, {});
+      mermaid.startOnLoad = false;
+      mermaid.initialize(mermaidOptions);
+      const cb = function (event) {
+        mermaid.init(mermaidOptions, '.stack.present > .present pre code.mermaid');
+        mermaid.init(mermaidOptions, '.slides > .present:not(.stack) pre code.mermaid');
+      }
+      Reveal.addEventListener('ready', cb);
+      Reveal.addEventListener('slidetransitionend', cb);
+    </script>
+  </body>
+</html>
