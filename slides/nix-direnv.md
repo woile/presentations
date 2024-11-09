@@ -32,7 +32,7 @@ nix profile install direnv
 ## What can you do with Nix?
 
 ```sh [1-8|1,5]
-install packages
+packages manager
 build applications
 build docker containers
 create virtual machines
@@ -46,7 +46,7 @@ templates
 
 ## As a package manager
 
-Replace `apt`, `brew`, `pipx`, etc.
+Replace `apt`, `brew`, `pipx`, `apk`, `cargo install`, etc.
 
 ----
 
