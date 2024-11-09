@@ -94,6 +94,8 @@ git add -N flake.nix .envrc # promise we will add them
 
 ----
 
+#### flake.nix
+
 ```nix
 {
   description = "A development shell";
@@ -114,6 +116,12 @@ git add -N flake.nix .envrc # promise we will add them
     };
   };
 }
+```
+
+----
+
+```sh
+nix flake init -t github:woile/nix-config#devshell
 ```
 
 ----
