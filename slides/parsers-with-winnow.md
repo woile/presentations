@@ -160,6 +160,18 @@ Many sections
 
 ---
 
+## recipe-lang
+
+```recp
+Take {potatoes}(3) and wrap them in &{aluminium foil}.
+Place them directly into the coals of the grill.
+Let cook for t{1 hour} until the potatoes are fork-tender.
+```
+
+[playground](https://play.reciperium.com)
+
+---
+
 ### Why building a parser in rust?
 
 - for fun <!-- .element: class="fragment" data-fragment-index="0" -->
@@ -378,6 +390,13 @@ notes:
 
 _/Jay • SO • NOOOO/_ <!-- .element: class="fragment" data-fragment-index="0" -->
 
+----
+
+```json
+{"event": "subscribed", "name": "bruce", "isadmin": false}
+{"event": "subscribed", "name": "marta", "isadmin": true}
+```
+
 ---
 
 <!-- .slide: data-auto-animate -->
@@ -417,7 +436,12 @@ _/Jay • SO • NOOOO/_ <!-- .element: class="fragment" data-fragment-index="0"
 ----
 
 ```rs
+use winnow::ascii::{alpha1, digit1};
 use winnow::combinator::alt;
+
+fn parser(input: &str) -> IResult<&str, &str> {
+  alt((alpha1, digit1)).parse_peek(input)
+}
 ```
 
 ---
@@ -460,6 +484,51 @@ let mut parser = delimited("(", "abc", ")");
 assert_eq!(parser.parse_peek("(abc)"), Ok(("", "abc")));
 ```
 
+---
+
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated](./assets/sep.svg)
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated 2](./assets/sep2.svg)
+
+----
+
+<!-- .slide: data-auto-animate -->
+
+### separated
+
+![separated 3](./assets/sep3.svg)
+
+----
+
+```rs
+// { "key1": "value1", "key2": "value2" }
+delimited(
+    ("{", space0),
+    separated(
+        0..,
+        separated_pair(parse_string, ":", parse_token),
+        (",", space0),
+    ),
+    (space0, "}"),
+)
+```
 ---
 
 ## Error handling
@@ -526,40 +595,12 @@ StrContextValue::Description
 
 ---
 
-<!-- .slide: data-auto-animate -->
-
-### separated
-
-----
-
-<!-- .slide: data-auto-animate -->
-
-### separated
-
-![separated](./assets/sep.svg)
-
-----
-
-<!-- .slide: data-auto-animate -->
-
-### separated
-
-![separated 2](./assets/sep2.svg)
-
-----
-
-<!-- .slide: data-auto-animate -->
-
-### separated
-
-![separated 3](./assets/sep3.svg)
-
----
 
 ## Wrap up
 
 - [winnow][winnow] is a well-documented powerful library
 - check out [crafting interpreters] book
+- let me know if you write a parser!
 
 [winnow]: https://github.com/winnow-rs/winnow
 [crafting interpreters]: https://craftinginterpreters.com
@@ -570,7 +611,7 @@ StrContextValue::Description
 
 ![qr code](./assets/qr-code.png)
 
-![mastodon logo](./assets/mastodon.png) <!-- .element:  width="40px" style="margin: 0" --> [@woile](https://hachyderm.io/@woile)
+![mastodon logo](./assets/mastodon.png) <!-- .element:  width="40px" style="margin: 0" --> [@woile@hachyderm.io](https://hachyderm.io/@woile)
 &nbsp;&nbsp;&nbsp;
 ![github logo](./assets/github.png) <!-- .element:  width="50px" style="margin: 0" --> [woile](https://github.com/woile)
 
