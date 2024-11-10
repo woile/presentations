@@ -17,7 +17,7 @@ highlightTheme: vs
 nix profile install direnv
 ```
 
-- Add nix cache to avoid building everything <!-- .element: class="fragment" data-fragment-index="0" -->
+- Add nix cache for fast builds <!-- .element: class="fragment" data-fragment-index="0" -->
 
 ---
 
@@ -27,19 +27,24 @@ nix profile install direnv
 - language
 - operating system
 
+everything is deterministic <!-- .element: class="fragment" data-fragment-index="0" -->
+
+reproducible builds <!-- .element: class="fragment" data-fragment-index="0" -->
+
 ----
 
 ## What can you do with Nix?
 
-```sh [1-8|1,5]
-packages manager
+```md [1-9|1,5]
+package manager
 build applications
 build docker containers
 create virtual machines
 create development environments
-build ISO
+create ISO's
 control fleet of servers
 templates
+operating system
 ```
 
 ---
@@ -74,11 +79,21 @@ nix profile upgrade
 
 [search.nixos.org/packages](https://search.nixos.org/packages)
 
+Biggest repository of packages (more than 100k)
+
 ---
 
 ## What is direnv?
 
 > load and unload stuff depending on the current directory
+
+----
+
+```sh
+# .envrc
+test -d .venv || python -m venv .venv
+. .venv/bin/activate
+```
 
 ---
 
@@ -96,7 +111,7 @@ git add -N flake.nix .envrc # promise we will add them
 
 #### flake.nix
 
-```nix
+```nix [1-19|14]
 {
   description = "A development shell";
   inputs = {
@@ -120,6 +135,21 @@ git add -N flake.nix .envrc # promise we will add them
 
 ----
 
+```nix
+{
+  buildInputs = [
+    pkgs.just
+    pkgs.deno
+    pkgs.python313
+    pkgs.pkg-config
+    pkgs.sqlx-cli
+    pkgs.openssl
+    pkgs.sqlite
+  ];
+}
+```
+----
+
 ```sh
 nix flake init -t github:woile/nix-config#devshell
 ```
@@ -140,8 +170,6 @@ direnv allow
 
 ---
 
-<!-- .slide: data-auto-animate -->
-
 ## Downsides
 
 - slow if binaries are missing or wrongly configured
@@ -149,21 +177,11 @@ direnv allow
 
 ---
 
-<!-- .slide: data-auto-animate -->
+## Summary
 
-## Downsides
-
-- slow if binaries are missing or wrongly configured
-- very hard to debug
-
----
-
-<!-- .slide: data-auto-animate -->
-
-## Downsides
-
-- slow if binaries are missing or wrongly configured
-- very very hard to debug
+- single package manager in linux and mac: `nix`!
+- developer environments with `direnv`
+- no more "it works on my machine"!
 
 ---
 
